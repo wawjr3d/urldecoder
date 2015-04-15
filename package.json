@@ -1,0 +1,26 @@
+{
+  "name": "urldecoder",
+  "version": "1.0.0",
+  "description": "Url Decoder that I usually need ",
+  "main": "index.js",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-browserify": "^0.5.1",
+    "gulp-livereload": "^3.8.0",
+    "gulp-sass": "^1.3.3",
+    "qs": "^2.4.1"
+  },
+  "scripts": {
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wawjr3d/urldecoder.git"
+  },
+  "author": "Wayne Warner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wawjr3d/urldecoder/issues"
+  },
+  "homepage": "https://github.com/wawjr3d/urldecoder"
+}
