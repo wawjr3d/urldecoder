@@ -11,6 +11,7 @@
     "qs": "^2.4.1"
   },
   "scripts": {
+    "start": "gulp",
     "build": "gulp build"
   },
   "repository": {

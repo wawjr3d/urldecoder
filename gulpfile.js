@@ -22,3 +22,12 @@ gulp.task('build', [
   'stylesheet',
   'javascript'
 ]);
+
+gulp.task('watch', function() {
+  gulp.watch(['./urldecoder.scss', './urldecoder.js'], ['build']);
+});
+
+gulp.task('default', [
+  'build',
+  'watch'
+]);
