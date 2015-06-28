@@ -116,6 +116,8 @@ body {
   flex: 3; }
 
 @media screen and (max-width: 50em) {
+  body {
+    padding: 1rem; }
   .output {
     display: block; }
   .decoded-params {
