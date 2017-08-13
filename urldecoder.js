@@ -15,39 +15,41 @@ decodeFormEl.addEventListener('submit', function(e) {
   decode();
 });
 
-encodedInputEl.addEventListener('click', function() {
-  var start = encodedInputEl.selectionStart;
-  var end = encodedInputEl.selectionEnd;
-  var length = encodedInputEl.textLength;
+if (!isMobileDevice()) {
+  encodedInputEl.addEventListener('click', function() {
+    var start = encodedInputEl.selectionStart;
+    var end = encodedInputEl.selectionEnd;
+    var length = encodedInputEl.textLength;
 
-  if (start === 0 && end === length) {
-    return;
-  }
+    if (start === 0 && end === length) {
+      return;
+    }
 
-  if (end > start) {
-    // assume making a selection intentionally
-    hadSelected = true;
-    return;
-  }
+    if (end > start) {
+      // assume making a selection intentionally
+      hadSelected = true;
+      return;
+    }
 
-  if (hadSelected) {
+    if (hadSelected) {
+      hadSelected = false;
+      return;
+    }
+
+    encodedInputEl.focus();
+    encodedInputEl.select();
+  });
+
+  encodedInputEl.addEventListener('blur', function() {
     hadSelected = false;
-    return;
-  }
+  });
 
-  encodedInputEl.focus();
-  encodedInputEl.select();
-});
-
-encodedInputEl.addEventListener('blur', function() {
-  hadSelected = false;
-});
-
-encodedInputEl.addEventListener('keydown', function(e) {
-  if (e.keyCode == 13 && e.metaKey) {
-    decode();
-  }
-});
+  encodedInputEl.addEventListener('keydown', function(e) {
+    if (e.keyCode == 13 && e.metaKey) {
+      decode();
+    }
+  });
+}
 
 function decode() {
   var encodedInput = encodedInputEl.value || '';
@@ -98,4 +100,8 @@ function definitionEl(value) {
   el.innerHTML = value;
 
   return el;
+}
+
+function isMobileDevice() {
+    return (typeof window.orientation !== 'undefined') || (navigator.userAgent.indexOf('IEMobile') !== -1);
 }
