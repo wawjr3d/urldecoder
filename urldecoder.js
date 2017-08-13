@@ -4,8 +4,10 @@ var qs = require('qs');
 
 var decodeFormEl = document.querySelectorAll('.decode-form')[0];
 var encodedInputEl = document.querySelectorAll('.encoded')[0];
+var outputEl = document.querySelectorAll('.output')[0];
 var decodedEl = document.querySelectorAll('.decoded')[0];
 var decodedParamsEl = document.querySelectorAll('.decoded-params')[0];
+var hadSelected = false;
 
 decodeFormEl.addEventListener('submit', function(e) {
   e.preventDefault();
@@ -14,8 +16,31 @@ decodeFormEl.addEventListener('submit', function(e) {
 });
 
 encodedInputEl.addEventListener('click', function() {
+  var start = encodedInputEl.selectionStart;
+  var end = encodedInputEl.selectionEnd;
+  var length = encodedInputEl.textLength;
+
+  if (start === 0 && end === length) {
+    return;
+  }
+
+  if (end > start) {
+    // assume making a selection intentionally
+    hadSelected = true;
+    return;
+  }
+
+  if (hadSelected) {
+    hadSelected = false;
+    return;
+  }
+
   encodedInputEl.focus();
   encodedInputEl.select();
+});
+
+encodedInputEl.addEventListener('blur', function() {
+  hadSelected = false;
 });
 
 encodedInputEl.addEventListener('keydown', function(e) {
@@ -29,6 +54,7 @@ function decode() {
   var decoded = decodeURIComponent(encodedInput);
   var querystring = encodedInput.split('?')[1];
 
+  outputEl.classList.add('with-results');
   decodedEl.innerHTML = decoded;
 
   if (querystring) {
