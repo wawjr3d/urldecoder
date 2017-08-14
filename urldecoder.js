@@ -15,6 +15,8 @@ decodeFormEl.addEventListener('submit', function(e) {
   decode();
 });
 
+
+
 if (!isMobileDevice()) {
   encodedInputEl.addEventListener('click', function() {
     var start = encodedInputEl.selectionStart;
