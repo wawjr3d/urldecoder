@@ -51,6 +51,10 @@ if (!isMobileDevice()) {
   });
 }
 
+function isMobileDevice() {
+    return (typeof window.orientation !== 'undefined') || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
+
 function decode() {
   var encodedInput = encodedInputEl.value || '';
   var decoded = decodeURIComponent(encodedInput);
@@ -100,8 +104,4 @@ function definitionEl(value) {
   el.innerHTML = value;
 
   return el;
-}
-
-function isMobileDevice() {
-    return (typeof window.orientation !== 'undefined') || (navigator.userAgent.indexOf('IEMobile') !== -1);
 }
