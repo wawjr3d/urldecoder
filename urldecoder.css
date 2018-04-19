@@ -81,6 +81,7 @@ h1 {
 .decoded {
     flex: 3;
     word-break: break-all;
+    line-height: 1.5;
     margin-top: 2rem;
 
     &::before {
@@ -100,6 +101,7 @@ h1 {
 
 .decoded-line {
     display: flex;
+    line-height: 1.25;
     word-break: break-all;
     padding-top: .375em;
     padding-bottom: .375em;
