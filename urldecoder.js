@@ -101,7 +101,7 @@ function termEl(key) {
 function definitionEl(value) {
   var el = document.createElement('span');
   el.className = 'decoded-value';
-  el.innerHTML = value;
+  el.innerHTML = typeof value !== 'string' ? JSON.stringify(value) : value;
 
   return el;
 }
