@@ -58,10 +58,17 @@ function isMobileDevice() {
 function decode() {
   var encodedInput = encodedInputEl.value || '';
   var decoded = decodeURIComponent(encodedInput);
-  var querystring = encodedInput.split('?')[1];
+  var urlParts = encodedInput.split('?');
+  var uri = urlParts[0];
+  var querystring = urlParts[1];
+
+  if (!querystring && !/^https?:\/\//.test(uri)) {
+    querystring = uri;
+  }
 
   outputEl.classList.add('with-results');
   decodedEl.innerHTML = decoded;
+  decodedParamsEl.innerHTML = '';
 
   if (querystring) {
     var decodedParams = qs.parse(querystring);
@@ -78,7 +85,6 @@ function decode() {
       paramsFragment.appendChild(termLineEl);
     });
 
-    decodedParamsEl.innerHTML = '';
     decodedParamsEl.appendChild(paramsFragment);
   }
 }
